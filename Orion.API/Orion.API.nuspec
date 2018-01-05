@@ -7,7 +7,6 @@
 		<authors>Jax.Hu</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$id$</description>
-		<iconUrl>http://192.168.2.171:8081/justwin_logo.png</iconUrl>
 		<dependencies>
 			<dependency id="Newtonsoft.Json" version="8.0.3" />
 			<dependency id="NLog" version="4.3.3" />
