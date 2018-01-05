@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Sqlite" Class="OrionApiSqliteDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="PrintQueue">
+    <Type Name="PrintQueue">
+      <Column Name="CreateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CommandNo" Type="System.String" DbType="VARCHAR(8) NOT NULL" CanBeNull="false" />
+      <Column Name="CommandStatus" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PrintId" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" />
+      <Column Name="TempName" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PrintInfo" Type="System.String" DbType="VARCHAR(8000) NOT NULL" CanBeNull="false" />
+      <Column Name="Prefix" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StartNo" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
+      <Column Name="EndNo" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
+      <Column Name="NowNo" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="OrionApiSqlite">
+  <DataContextMoniker Name="/OrionApiSqliteDataContext" />
+  <nestedChildShapes>
+    <classShape Id="9f4553d6-1050-494d-9374-a19022b16781" absoluteBounds="0.75, 0.625, 2, 2.5442936197916666">
+      <DataClassMoniker Name="/OrionApiSqliteDataContext/PrintQueue" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7be96df5-65dd-4d20-8b68-6c33f2de2213" absoluteBounds="0.765, 1.085, 1.9700000000000002, 1.9842936197916665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

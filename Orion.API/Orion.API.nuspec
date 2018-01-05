@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$id$</title>
+		<authors>Jax.Hu</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>$id$</description>
+		<iconUrl>http://192.168.2.171:8081/justwin_logo.png</iconUrl>
+		<dependencies>
+			<dependency id="Newtonsoft.Json" version="8.0.3" />
+			<dependency id="NLog" version="4.3.3" />
+		</dependencies>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework="" />
+			<frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework="" />
+			<frameworkAssembly assemblyName="System.Data.Linq" targetFramework="" />
+			<frameworkAssembly assemblyName="System.Web" targetFramework="" />
+		</frameworkAssemblies>
+	</metadata>
+	<files>
+		<file src="bin\Release\$id$.pdb" target="lib\net45" />
+	</files>	
+</package>

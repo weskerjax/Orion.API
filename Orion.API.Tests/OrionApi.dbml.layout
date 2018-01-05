@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="OrionApi">
+  <DataContextMoniker Name="/OrionApiDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3b20bca3-8d38-4f12-91d1-6bfe134ceec1" absoluteBounds="0.5, 0.5, 2, 2.7202376302083326">
+      <DataClassMoniker Name="/OrionApiDataContext/InvoiceIssue" />
+      <nestedChildShapes>
+        <elementListCompartment Id="019583ad-16d6-47dc-97ca-5c853539aa95" absoluteBounds="0.515, 0.96, 1.9700000000000002, 2.160237630208333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cfa16019-10a7-4f14-b63f-6a695c4e0012" absoluteBounds="3.25, 0.5, 2, 2.0164615885416666">
+      <DataClassMoniker Name="/OrionApiDataContext/InvoiceIssueItems" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c7e7ddb0-2dc2-4d49-8b72-9256043ab0b9" absoluteBounds="3.265, 0.96, 1.9700000000000002, 1.4564615885416665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 1.50823079427083); (3.25 : 1.50823079427083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/OrionApiDataContext/InvoiceIssue/InvoiceIssue_InvoiceIssueItems" />
+      <nodes>
+        <classShapeMoniker Id="3b20bca3-8d38-4f12-91d1-6bfe134ceec1" />
+        <classShapeMoniker Id="cfa16019-10a7-4f14-b63f-6a695c4e0012" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="69b15abd-7d62-43ae-95da-bfc7eb9c4b88" absoluteBounds="6.125, 0.5, 2, 2.0164615885416666">
+      <DataClassMoniker Name="/OrionApiDataContext/InventoryTemp" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2be55b64-4a3a-4a27-a40f-dbabfdfe68e1" absoluteBounds="6.14, 0.96, 1.9700000000000002, 1.4564615885416665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
