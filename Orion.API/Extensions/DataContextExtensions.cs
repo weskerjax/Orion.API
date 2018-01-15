@@ -96,6 +96,13 @@ namespace Orion.API.Extensions
 
 
 
+		/// <summary>將查詢條件的所有實體置於 pending delete 狀態。</summary>
+		public static void DeleteAllOnSubmit<TEntity>(this Table<TEntity> table, Expression<Func<TEntity, bool>> predicate) where TEntity : class
+		{
+			table.DeleteAllOnSubmit(table.Where(predicate));
+		}
+
+
 
 
 		/*######################################################################*/

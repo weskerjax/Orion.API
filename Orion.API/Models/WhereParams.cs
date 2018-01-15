@@ -337,6 +337,7 @@ namespace Orion.API.Models
 					case nameof(string.Contains): 
 					case nameof(string.StartsWith): 
 					case nameof(string.EndsWith):
+					case nameof(string.CompareTo):
 						return methodCallExpr.Arguments.Concat(new[] { methodCallExpr.Object })
 							.Select(x => findValueExpr(paramExpr, x))
 							.FirstOrDefault(x => x != null);

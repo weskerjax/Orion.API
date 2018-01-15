@@ -50,12 +50,11 @@ namespace Orion.API
 
 		private Expression getStringCondition(Expression parameter, WhereOperator oper, string[] values)
 		{
-			Type type = typeof(string);
-			var containsMethod = _containsMethod.MakeGenericMethod(type);
+			var containsMethod = _containsMethod.MakeGenericMethod(typeof(string));
 			var compareMethod = LambdaUtils.GetMethod<string>(x => x.CompareTo(""));
 			var zeroExpr = Expression.Constant(0);
-			var valueExpr = Expression.Constant(values.FirstOrDefault());
-			var valuesExpr = Expression.Constant(values);
+			var valueExpr = Expression.Constant(values.FirstOrDefault(), typeof(string));
+			var valuesExpr = Expression.Constant(values, typeof(string[]));
 			var compareExpr = Expression.Call(parameter, compareMethod, valueExpr);
 			
 			switch (oper)
@@ -96,11 +95,10 @@ namespace Orion.API
 
 		private Expression getValueCondition<T>(Expression parameter, WhereOperator oper, T[] values)
 		{
-			Type type = typeof(T);
 			var tempExpr = Expression.Constant(values.FirstOrDefault());
-			var valueExpr = Expression.Convert(tempExpr, type);
-			var valuesExpr = Expression.Constant(values);
-			var containsMethod = _containsMethod.MakeGenericMethod(type);
+			var valueExpr = Expression.Convert(tempExpr, typeof(T));
+			var valuesExpr = Expression.Constant(values, typeof(T[]));
+			var containsMethod = _containsMethod.MakeGenericMethod(typeof(T));
 
 			switch (oper)
 			{
@@ -121,7 +119,7 @@ namespace Orion.API
 				case WhereOperator.NotIn: /* !values.Contains(x) */
 					return Expression.Not(Expression.Call(containsMethod, valuesExpr, parameter));
 				case WhereOperator.Between: /* x >= values[0] && x <= values[1] */
-					var value1Expr = Expression.Convert(Expression.Constant(values[1]), type);
+					var value1Expr = Expression.Convert(Expression.Constant(values[1]), typeof(T));
 					return Expression.AndAlso(
 						Expression.GreaterThanOrEqual(parameter, valueExpr),
 						Expression.LessThanOrEqual(parameter, value1Expr)

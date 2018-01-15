@@ -206,6 +206,21 @@ namespace Orion.API.Models.Tests
 		}
 
 
+		[Fact]
+		public void Assing_Test10()
+		{
+			var param = new WhereParams<InvoiceIssueDomain>().Assign(x => x.InvoicePrefix.StartsWith("A"));
+			Assert.Equal(1, param.GetValues(x => x.InvoicePrefix).Length);
+			Assert.Equal(WhereOperator.StartsWith, param.GetOperator(x => x.InvoicePrefix));
+		}
+
+		[Fact]
+		public void Assing_Test11()
+		{
+			var param = new WhereParams<InvoiceIssueDomain>().Assign(x => x.InvoicePrefix.CompareTo("A") > 0);
+			Assert.Equal(1, param.GetValues(x => x.InvoicePrefix).Length);
+			Assert.Equal(WhereOperator.GreaterThan, param.GetOperator(x => x.InvoicePrefix));
+		}
 
 
 	}

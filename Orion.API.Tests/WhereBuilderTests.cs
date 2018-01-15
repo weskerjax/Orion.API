@@ -295,6 +295,31 @@ namespace Orion.API.Tests
 		}
 
 
+
+
+		/*===========================================================================*/
+
+		[Fact]
+		public void StringTest()
+		{
+			var param = new WhereParams<InvoiceIssueDomain>()
+				.Assign(x => x.InvoicePrefix == null);
+
+
+			var query = _dc.InvoiceIssue.WhereBuilder(param)
+				.WhereBind(x => x.UseStatus.ToString(), y => y.InvoicePrefix)
+				.WhereBind(x => x.InvoicePrefix, y => y.InvoicePrefix)
+				.Build();
+
+			var sql = query.ToString();
+
+			query.ToList();
+
+
+			Assert.True(true);
+		}
+
+
 	}
 
 
