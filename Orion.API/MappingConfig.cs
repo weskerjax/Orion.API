@@ -141,8 +141,7 @@ namespace Orion.API
 			var lostMapping = fromPropDict
 				.Where(x => !x.Value.PropertyType.IsTypeOf(typeof(EntitySet<>)))
 				.Where(x => !_ignoreFrom.Contains(x.Key))
-				.Select(x => x.Key)
-				.ToList();
+				.ToList(x => x.Key);
 
 			if (lostMapping.Count > 0)
 			{ errorMsg.Add($"來源 Property [ {string.Join(", ", lostMapping)} ] 缺少對應！"); }

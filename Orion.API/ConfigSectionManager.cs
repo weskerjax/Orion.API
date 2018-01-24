@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Linq;
 using System.ServiceModel.Configuration;
+using Orion.API.Extensions;
 
 namespace Orion.API
 {
@@ -34,8 +35,7 @@ namespace Orion.API
 
 			List<string> list = section.ServiceActivations
 				.Cast<ServiceActivationElement>()
-				.Select(x => x.RelativeAddress)
-				.ToList();
+				.ToList(x => x.RelativeAddress);
 
 			return list;
 		}

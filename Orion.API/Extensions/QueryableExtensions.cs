@@ -11,6 +11,21 @@ namespace Orion.API.Extensions
 	public static class QueryableExtensions
 	{
 
+		/// <summary>從 IQueryable 建立 List</summary>
+		public static List<TResult> ToList<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector)
+		{
+			return source.Select(selector).ToList();
+		}
+
+		/// <summary>從 IQueryable 建立 List</summary>
+		public static TResult[] ToArray<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector)
+		{
+			return source.Select(selector).ToArray();
+		}
+
+
+
+
 		/// <summary> OrderBy 擴充，使用 bool 指定 descending， true Asc ; false Desc</summary>
 		public static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, bool descending) 
 		{

@@ -264,26 +264,14 @@ namespace Orion.API.Tests
 		/*===========================================================================*/
 
 		[Fact]
-		public void FullRunTest()
+		public void ListTest()
 		{
 			var param = new WhereParams<InvoiceIssueDomain>()
-				.SetValues(x => x.UseStatus,	WhereOperator.Equals, UseStatus.Enable)
-				.SetValues(x => x.InvoicePrefix, WhereOperator.Equals, "SS")
-				.SetValues(x => x.ProductQty,	WhereOperator.Equals, 1)
-				.SetValues(x => x.ModifyDate,	WhereOperator.Equals, DateTime.Today)
-				.SetValues(x => x.Sum,			WhereOperator.Equals, 1.0m, 3.0m)
-				.SetValues(x => x.RoleIds,		WhereOperator.Equals, 1);
+				.SetValues(x => x.RoleIds, WhereOperator.Equals, 1);
 
 
 			var query = _dc.InvoiceIssue.WhereBuilder(param)
 				.WhereBind(x => x.RoleIds, y => y.InvoiceIssueItems.Select(z => z.Qty))
-				.WhereBind(x => x.UseStatus.ToString(), y => y.InvoicePrefix)
-				.WhereBind(x => x.InvoicePrefix,	y => y.InvoicePrefix)
-				.WhereBind(x => x.ProductQty, y => y.InvoiceId)
-				.WhereBind(x => x.ModifyDate,		y => y.ModifyDate)
-				.WhereBind(x => x.Sum,			y => y.Total)
-				.WhereBind(x => x.ProductQty,		y => y.InvoiceIssueItems.Select(z => (int?)z.Qty))
-				.WhereBind(x => x.Sum,			y => y.InvoiceIssueItems.Select(z => z.Price))
 				.Build();
 
 			var sql = query.ToString();
@@ -293,6 +281,33 @@ namespace Orion.API.Tests
 
 			Assert.True(true);
 		}
+
+
+
+
+
+		/*===========================================================================*/
+
+		[Fact]
+		public void ConvertTest()
+		{
+			var param = new WhereParams<InvoiceIssueDomain>()
+				.SetValues(x => x.UseStatus, WhereOperator.Equals, UseStatus.Enable)
+				.SetValues(x => x.ProductQty, WhereOperator.Equals, 1);
+
+
+			var query = _dc.InvoiceIssue.WhereBuilder(param)
+				.WhereBind(x => x.UseStatus.ToString(), y => y.InvoicePrefix)
+				.WhereBind(x => x.ProductQty * 100, y => y.InvoiceId)
+				.Build();
+
+			var sql = query.ToString();
+
+			query.ToList();
+
+			Assert.True(true);
+		}
+
 
 
 

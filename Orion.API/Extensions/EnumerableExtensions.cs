@@ -11,6 +11,20 @@ namespace Orion.API.Extensions
 	public static class EnumerableExtensions
 	{
 
+		/// <summary>從 IEnumerable 建立 List</summary>
+		public static List<TResult> ToList<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+		{
+			return source.Select(selector).ToList();
+		}
+
+		/// <summary>從 IEnumerable 建立 List</summary>
+		public static TResult[] ToArray<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+		{
+			return source.Select(selector).ToArray();
+		}
+
+
+
 		/// <summary> 賦予 IEnumerable ForEach Method</summary>
 		public static void ForEach<T>(this IEnumerable<T> enumeration, Action<T> action)
 		{

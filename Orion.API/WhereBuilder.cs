@@ -35,12 +35,38 @@ namespace Orion.API
 
 		/*=====================================================================*/
 
-		private string getPropertyName(LambdaExpression lambdaExpr)
+		private PropertyInfo getProperty(LambdaExpression lambdaExpr)
 		{
 			PropertyInfo prop = lambdaExpr.GetProperty();
-			if (prop != null) { return prop.Name; }
+			if (prop != null) { return prop; }
 
-			throw new Exception("無法取得 " + lambdaExpr + " 的 Property 名稱");
+			throw new Exception("無法取得 " + lambdaExpr + " 的 Property");
+		}
+
+
+		private T[] getValues<T>(Expression<Func<TParams, IEnumerable<T>>> find)
+		{
+			return _param.GetValues(find);
+		}
+
+
+		private T[] getValues<T>(Expression<Func<TParams, T>> find)
+		{
+			PropertyInfo prop = getProperty(find);
+
+			Func<TParams, T> getter = find.Compile();
+			var tempParam = (TParams)Activator.CreateInstance(typeof(TParams));
+
+			object[] values = ((IWhereParams)_param).GetValues(prop.Name);
+
+			var result = new List<T>();
+			foreach (var value in values)
+			{
+				prop.SetValue(tempParam, value);
+				result.Add(getter(tempParam));
+			}
+
+			return result.ToArray();
 		}
 
 
@@ -184,7 +210,7 @@ namespace Orion.API
 		public WhereBuilder<TModel, TParams> WhereBind<T>(Expression<Func<TParams, IEnumerable<T>>> find, Expression<Func<TModel, IEnumerable<T>>> columnSelector)
 		{
 			if (_param == null) { return this; }
-			T[] values = _param.GetValues(find);
+			T[] values = getValues(find);
 			WhereOperator oper = _param.GetOperator(find);
 
 			bindEnumerable(columnSelector, oper, values);
@@ -196,7 +222,7 @@ namespace Orion.API
 		public WhereBuilder<TModel, TParams> WhereBind<T>(Expression<Func<TParams, T>> find, Expression<Func<TModel, IEnumerable<T>>> columnSelector)
 		{
 			if (_param == null) { return this; }
-			T[] values = _param.GetValues(find);
+			T[] values = getValues(find);
 			WhereOperator oper = _param.GetOperator(find);
 
 			bindEnumerable(columnSelector, oper, values);
@@ -208,7 +234,7 @@ namespace Orion.API
 		public WhereBuilder<TModel, TParams> WhereBind<T>(Expression<Func<TParams, T>> find, Expression<Func<TModel, T>> columnSelector)
 		{
 			if (_param == null) { return this; }
-			T[] values = _param.GetValues(find);
+			T[] values = getValues(find);
 			WhereOperator oper = _param.GetOperator(find);
 
 			Expression condition = getCondition(columnSelector.Body, oper, values);
