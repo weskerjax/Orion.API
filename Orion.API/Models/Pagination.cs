@@ -42,6 +42,13 @@ namespace Orion.API.Models
 	[DataContract]
 	public class Pagination<T> : IPagination
 	{
+		/// <summary>取得空的分頁</summary>
+		public static Pagination<T> Empty()
+		{
+			return new Pagination<T> { List = new List<T>() };
+		}
+
+
 		IList IPagination.List { get { return List; } }
 
 		/// <summary>資料清單</summary>
